@@ -5,12 +5,12 @@
 
 adjudicante(1,'Município de Chaves',501205551,'Portugal,Vila Real,Chaves').
 adjudicante(2,'Universidade do Minho',502011378,'Portugal,Braga,Braga').
-adjudicante(3,'Benetton',980488443,'Portugal,Porto,Porto').
-adjudicante(4,'Continente',501591109,'Portugal,Lisboa,Oeiras').
-adjudicante(5,'EDP',503504564,'Portugal,Lisboa,Lisboa').
-adjudicante(6,'Jerónimo Martins',500100144,'Portugal,Lisboa,Lisboa').
-adjudicante(7,'Matrizauto',‎506678776,'Portugal,Porto,Marco de Canaveses').
-adjudicante(8,'Vila Galé',501697276,'Portugal,Lisboa,Lisboa').
+adjudicante(3,'Benetton Têxtil - Confecção de Têxteis S.A',505919796,'Portugal,Porto,Porto').
+adjudicante(4,'Continente Hipermercados, S.A',501591109,'Portugal,Lisboa,Oeiras').
+adjudicante(5,'Edp Distribuição - Energia S.A',504394029,'Portugal,Lisboa,Lisboa').
+adjudicante(6,'Jerónimo Martins SGPS SA',500100144,'Portugal,Lisboa,Lisboa').
+adjudicante(7,'Matrizauto - Comércio de Automóveis, S.A',‎506678776,'Portugal,Porto,Marco de Canaveses').
+adjudicante(8,'Vila Galé-Sociedade de Empreendimentos Turísticos S.A',501697276,'Portugal,Lisboa,Lisboa').
 
 % Conhecimento Perfeito Negativo
 
@@ -34,10 +34,15 @@ excecao(adjudicante(12,'Porcelanosa Lisboa - Comércio de Materiais de Construç
 excecao(adjudicante(13,'Bial - Consumer Health, S.A',508905800,'Portugal,Porto,Trofa')).
 excecao(adjudicante(13,'Bial - Consumer Health, S.A',508905800,'Portugal,Braga,Famalicão')).
 
+% Não se sabe o nif exato de Casio Espa A Sl - Sucursal Em Portugal
+% apenas se sabe que está entre 900000000 e 1000000000:
+
+excecao(adjudicante(14,'Casio Espa A Sl - Sucursal Em Portugal',NIF,'Portugal,Lisboa,Lisboa')) :- NIF => 900000000, NIF <= 1000000000.
+
 % Conhecimento Imperfeito Interdito
 % É impossível saber o nif da entidade adjudicante:
 
-adjudicante(14,'Companhia de Seguros Fidelidade, S.a',nif_impossivel,'Portugal,Lisboa,Lisboa').
+adjudicante(15,'Companhia de Seguros Fidelidade, S.a',nif_impossivel,'Portugal,Lisboa,Lisboa').
 excecao(adjudicante(IdAd,Nome,NIF,Morada)) :- adjudicante((IdAd,Nome,nif_impossivel,Morada)).
 nulointerdito(nif_impossivel).
 +adjudicante(IdAd,Nome,NIF,Morada) :: (solucoes((IdAd,Nome,NIF,Morada), (adjudicante(14,'Companhia de Seguros Fidelidade, S.a',nif_impossivel,'Portugal,Lisboa,Lisboa'), nao(nulointerdito(nif_impossivel))), R),comprimento(R,0)).
@@ -47,12 +52,12 @@ nulointerdito(nif_impossivel).
 
 % Conhecimento Perfeito Positivo
 
-adjudicataria(1,'IKEA',505416654,'Portugal,Lisboa,Loures').
-adjudicataria(2,'Maxmat',503246468,'Portugal,Porto,Maia').
-adjudicataria(3,'Michelin',500908710,'Portugal,Lisboa,Lisboa').
-adjudicataria(4,'FCB - Sociedade de Advogados',502152109,'Portugal,Lisboa,Lisboa').
-adjudicataria(5,'Padaria Portuguesa',509323065,'Portugal,Lisboa,Lisboa').
-adjudicataria(6,'Cofina Media',502801034,'Portugal,Lisboa,Lisboa').
+adjudicataria(1,'Ikea Portugal - Móveis e Decoração Lda',505416654,'Portugal,Lisboa,Loures').
+adjudicataria(2,'Modelo - Distribuição de Materiais de Construção S.A',503246468,'Portugal,Porto,Maia').
+adjudicataria(3,'Michelin, Companhia Luso-Pneu Lda',500908710,'Portugal,Lisboa,Lisboa').
+adjudicataria(4,'F.castelo Branco & Associados - Sociedade de Advogados',502152109,'Portugal,Lisboa,Lisboa').
+adjudicataria(5,'A Padaria Portuguesa Cq - Actividades Hoteleiras, Lda',509323065,'Portugal,Lisboa,Lisboa').
+adjudicataria(6,'Cofina Media, S.A',502801034,'Portugal,Lisboa,Lisboa').
 adjudicataria(7,'Vista Alegre Atlantis, S.A',500889139,'Portugal,Aveiro,Ílhavo').
 
 % Conhecimento Perfeito Negativo
@@ -109,8 +114,3 @@ excecao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Pr
 
 excecao(contrato(5,1,'Locação de bens móveis','Consulta prévia','Disponibilização de materiais',3000,100,'Loures',01-02-2020)).
 excecao(contrato(5,1,'Locação de bens móveis','Consulta prévia','Disponibilização de materiais',3000,100,'Loures',02-02-2020)).
-
-% Conhecimento Imperfeito Impreciso
-% Não se sabe se o cuidado foi efetuado no dia 1 ou 2 de março de 2019:
-excecao(cuidado('01-03-2019',5,1,'Consulta de rotina',9)).
-excecao(cuidado('02-03-2019',5,1,'Consulta de rotina',9)).

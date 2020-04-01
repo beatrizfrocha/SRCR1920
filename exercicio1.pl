@@ -23,6 +23,11 @@
 :- dynamic nulointerdito/1.
 
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
+% Carregar predicados do ficheiro no qual é guardado o estado
+
+:- include('estado.pl').
+
+%--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % Pressuposto do Mundo Fechado
 % para o predicado adjudicante e adjudicataria
 
