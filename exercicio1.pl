@@ -26,6 +26,7 @@
 % Carregar predicados do ficheiro no qual é guardado o estado
 
 :- include('estado.pl').
+:- include('invariantes.pl').
 
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % Pressuposto do Mundo Fechado
