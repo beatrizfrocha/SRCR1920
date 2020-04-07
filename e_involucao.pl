@@ -4,14 +4,14 @@
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % Evolução de conhecimento perfeito (positivo e negativo)
 
-% Insere novo conhecimento na base de conhecimento
+% CHECK Insere novo conhecimento na base de conhecimento
 
 evolucao( Termo ) :-
     solucoes( Invariante,+Termo::Invariante,Lista ),
     insercao( Termo ),
     teste( Lista ).
 
-% Insere conhecimento perfeito positivo na base de conhecimento
+% CHECK Insere conhecimento perfeito positivo na base de conhecimento
 
 evolucao(Termo, positivo) :-
     solucoes(Invariante, +Termo::Invariante, Lista),
@@ -20,17 +20,17 @@ evolucao(Termo, positivo) :-
 
 % Insere conhecimento perfeito negativo na base de conhecimento
 
-evolucao(Termo, negativo) :-
-    solucoes(Invariante, +(-Termo)::Invariante, Lista),
-    insercao(-Termo),
-    teste(Lista).
+ evolucao(Termo, negativo) :-
+     solucoes(Invariante, +(-Termo)::Invariante, Lista),
+     insercao(-Termo),
+     teste(Lista).
 
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % Evolução de conhecimento imperfeito incerto
 
 % Adjudicante
 
-% Insere conhecimento imperfeito incerto na base de conhecimento
+% CHECK Insere conhecimento imperfeito incerto na base de conhecimento
 % no caso do adjudicante com nome desconhecido
 
 evolucao(adjudicante(IdAd,Nome_desconhecido,NIF,Morada), adjudicante, incerto, nome) :-

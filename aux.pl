@@ -58,3 +58,17 @@ nifPositivo(N) :- N >= 0.
 % Valor válido (>=0)
 
 valorValido(V) :- V >= 0.
+
+% Tipo de Procedimento válido (Ajuste direto, Consulta previa ou Concurso publico)
+
+procedimentoValido(P) :- P == 'Ajuste direto'; 
+                         P == 'Consulta previa';
+                         P == 'Concurso publico'.
+
+% Valor igual ou inferior a 5000 euros
+
+valorAjuste(V) :- V =< 5000.
+
+% Tipo de Contrato válido (Aquisicao de servicos)
+
+contratoValido(C) :- C == 'Aquisicao de servicos'.
