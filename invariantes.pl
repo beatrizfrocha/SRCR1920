@@ -7,8 +7,8 @@
  % Invariante que garante que não existe conhecimento
  % perfeito positivo repetido
 
-+T :: (solucoes(T, T, R),
-       comprimento(R, 1)).
+ +T :: (solucoes(T, T, R),
+        comprimento(R, 1)).
 
  % Invariante que garante que não existe conhecimento
  % perfeito negativo repetido
@@ -19,17 +19,17 @@
  % Invariante que não permite adicionar conhecimento
  % perfeito positivo que contradiz conhecimento perfeito negativo
 
- +T :: nao(-T).
+  +T :: nao(-T).
 
  % Invariante que não permite adicionar conhecimento
  % perfeito negativo que contradiz conhecimento perfeito positivo
 
- +(-T) :: nao(T).
+  +(-T) :: nao(T).
 
  % Invariante que garante que não existem excecoes repetidas
 
- +(excecao(T)) :: (solucoes(T, excecao(T), R),
-                  comprimento(R, 1)).
+  +(excecao(T)) :: (solucoes(T, excecao(T), R),
+                   comprimento(R, 1)).
 
  %- - - - - - - - - - - - - - - - - - - - - - - - - - -  -  -  -  -   -
  % Invariantes Estruturais e Referenciais: Adjudicante
@@ -37,12 +37,12 @@
  % CHECK Invariante que garante que o id de cada adjudicante é único
  % para conhecimento perfeito positivo
 
- +adjudicante(IdAd,Nome,NIF,Morada) :: (solucoes(IdAd, adjudicante(IdAd,_,_,_), R),comprimento(R, N),N==1).
+  +adjudicante(IdAd,Nome,NIF,Morada) :: (solucoes(IdAd, adjudicante(IdAd,_,_,_), R),comprimento(R, N),N==1).
 
  % Invariante que garante que o id de cada adjudicante é único
  % para conhecimento perfeito negativo
 
-+(-adjudicante(IdAd,Nome,NIF,Morada)) :: (solucoes(IdAd, -adjudicante(IdAd,_,_,_), R),
+ +(-adjudicante(IdAd,Nome,NIF,Morada)) :: (solucoes(IdAd, -adjudicante(IdAd,_,_,_), R),
                           comprimento(R, N),N==1).
 
  % CHECK Garantir que adjudicantes com ids diferentes têm diferente informação
@@ -147,7 +147,7 @@
 
  +contrato(_,_,_,_,_,Valor,_,_,_) :: valorValido(Valor).
 
- % Garantir que o valor de cada contrato é válido (>= 0)
+ % CHECK Garantir que o valor de cada contrato é válido (>= 0)
  % para conhecimento perfeito negativo
 
  +(-contrato(_,_,_,_,_,Valor,_,_,_)) :: valorValido(Valor).
@@ -157,7 +157,7 @@
 
  +contrato(_,_,_,Procedimento,_,_,_,_,_) :: procedimentoValido(Procedimento).
 
- % Garantir que o Tipo de Procedimento é válido (Ajuste direto, Consulta previa ou Concurso publico)
+ % CHECK Garantir que o Tipo de Procedimento é válido (Ajuste direto, Consulta previa ou Concurso publico)
  % para conhecimento perfeito negativo
 
  +(-contrato(_,_,_,Procedimento,_,_,_,_,_)) :: procedimentoValido(Procedimento).
@@ -167,7 +167,7 @@
 
  +contrato(_,_,_,'Ajuste direto',_,Valor,_,_,_) :: valorAjuste(Valor).
 
- % Garantir que os contratos por Ajuste direto têm um valor igual ou inferior a 5000 euros
+ % CHECK Garantir que os contratos por Ajuste direto têm um valor igual ou inferior a 5000 euros
  % para conhecimento perfeito negativo
 
  +(-contrato(_,_,_,'Ajuste direto',_,Valor,_,_,_)) :: valorAjuste(Valor).
@@ -177,7 +177,7 @@
 
  +contrato(_,_,Contrato,_,_,_,_,_,_) :: contratoValido(Contrato).
 
- % Garantir que o Tipo de Contrato é válido (Aquisicao de servicos)
+ % CHECK Garantir que o Tipo de Contrato é válido (Aquisicao de servicos)
  % para conhecimento perfeito negativo
 
  +(-contrato(_,_,Contrato,_,_,_,_,_,_)) :: contratoValido(Contrato).

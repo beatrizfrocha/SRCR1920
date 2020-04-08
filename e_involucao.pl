@@ -18,9 +18,9 @@ evolucao(Termo, positivo) :-
     insercao(Termo),
     teste(Lista).
 
-% Insere conhecimento perfeito negativo na base de conhecimento
+% CHECK Insere conhecimento perfeito negativo na base de conhecimento
 
- evolucao(Termo, negativo) :-
+ evolucao(Termo,negativo) :-
      solucoes(Invariante, +(-Termo)::Invariante, Lista),
      insercao(-Termo),
      teste(Lista).
@@ -46,7 +46,7 @@ evolucao(adjudicante(IdAd,Nome,NIF_desconhecido,Morada), adjudicante, incerto, n
     insercao((excecao(adjudicante(IdAdjudicante,N,Nif,M)) :-
                     adjudicante(IdAdjudicante,N,NIF_desconhecido,M))).
 
-% Insere conhecimento imperfeito incerto na base de conhecimento
+% CHECK Insere conhecimento imperfeito incerto na base de conhecimento
 % no caso do adjudicante com morada desconhecida
 
 evolucao(adjudicante(IdAd,Nome,NIF,Morada_desconhecida), adjudicante, incerto, morada) :-
@@ -56,7 +56,7 @@ evolucao(adjudicante(IdAd,Nome,NIF,Morada_desconhecida), adjudicante, incerto, m
 
 % Adjudicatária
 
-% Insere conhecimento imperfeito incerto na base de conhecimento
+% CHECK Insere conhecimento imperfeito incerto na base de conhecimento
 % no caso da entidade adjudicatária com nome desconhecido
 
 evolucao(adjudicataria(IdAda,Nome_desconhecido,NIF,Morada), adjudicataria, incerto, nome) :-
@@ -72,7 +72,7 @@ evolucao(adjudicataria(IdAda,Nome,NIF_desconhecido,Morada), adjudicataria, incer
     insercao((excecao(adjudicataria(IdAdjudicataria,N,Nif,M)) :-
                     adjudicataria(IdAdjudicataria,N,NIF_desconhecido,M))).
 
-% Insere conhecimento imperfeito incerto na base de conhecimento
+% CHECK Insere conhecimento imperfeito incerto na base de conhecimento
 % no caso da entidade adjudicatária com morada desconhecida
 
 evolucao(adjudicataria(IdAda,Nome,NIF,Morada_desconhecida), adjudicataria, incerto, morada) :-
@@ -114,7 +114,7 @@ evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento_desconhecido,Desc
     insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
                     contrato(IdAdjudicante,IdAdjudicataria,TC,TipoDeProcedimento_desconhecido,Desc,V,P,L,D))).
 
-% Insere conhecimento imperfeito incerto na base de conhecimento
+% CHECK Insere conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com descrição desconhecida
 
 evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao_desconhecida,Valor,Prazo,Local,Data), contrato, incerto, descricao) :-
@@ -138,7 +138,7 @@ evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,P
     insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
                     contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,Prazo_desconhecido,L,D))).
 
-% Insere conhecimento imperfeito incerto na base de conhecimento
+% CHECK Insere conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com local desconhecido
 
 evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local_desconhecido,Data), contrato, incerto, local) :-
@@ -157,7 +157,7 @@ evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,P
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % Evolução de conhecimento imperfeito impreciso
 
-% Insere conhecimento imperfeito impreciso na base de conhecimento
+% CHECK Insere conhecimento imperfeito impreciso na base de conhecimento
 % seja de adjudicante, adjudicatária ou contrato
 
 evolucao(Termo, impreciso) :-
@@ -165,14 +165,14 @@ evolucao(Termo, impreciso) :-
     insercao(excecao(Termo)),
     teste(Lista).
 
-% Insere conhecimento imperfeito impreciso na base de conhecimento
+% CHECK Insere conhecimento imperfeito impreciso na base de conhecimento
 % no caso de adjudicante com NIF contido dentro de um intervalo finito de valores
 
 evolucao(adjudicante(IdAd,Nome,NIF_impreciso,Morada), adjudicante, impreciso, nif, LI, LS) :-
     insercao((excecao(adjudicante(IdAd,Nome,NIF_impreciso,Morada)) :-
                     NIF_impreciso >= LI, NIF_impreciso =< LS)).
 
-% Insere conhecimento imperfeito impreciso na base de conhecimento
+% CHECK Insere conhecimento imperfeito impreciso na base de conhecimento
 % no caso da entidade adjudicatária com NIF contido dentro de um intervalo finito de valores
 
 evolucao(adjudicataria(IdAda,Nome,NIF_impreciso,Morada), adjudicataria, impreciso, nif, LI, LS) :-
@@ -182,7 +182,7 @@ evolucao(adjudicataria(IdAda,Nome,NIF_impreciso,Morada), adjudicataria, imprecis
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % Evolução de conhecimento imperfeito interdito
 
-% Insere conhecimento imperfeito interdito na base de conhecimento
+% CHECK Insere conhecimento imperfeito interdito na base de conhecimento
 % no caso de adjudicante com nome interdito
  
 evolucao(adjudicante(IdAd,Nome_impossivel,NIF,Morada), adjudicante, interdito, nome) :-
@@ -194,21 +194,21 @@ evolucao(adjudicante(IdAd,Nome_impossivel,NIF,Morada), adjudicante, interdito, n
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % Involução de conhecimento perfeito (positivo e negativo)
 
-% Extensão do predicado que permite a involucao do conhecimento
+% CHECK Extensão do predicado que permite a involucao do conhecimento
 
 involucao( Termo ) :-
     solucoes( Invariante,-Termo::Invariante,Lista ),
     remocao( Termo ),
     teste( Lista ).
 
-% Retira conhecimento perfeito positivo na base de conhecimento
+% CHECK Retira conhecimento perfeito positivo na base de conhecimento
 
 involucao(Termo, positivo) :-
     solucoes(Invariante, -Termo::Invariante, Lista),
     remocao(Termo),
     teste(Lista).
 
-% Retira conhecimento perfeito negativo na base de conhecimento
+% CHECK Retira conhecimento perfeito negativo na base de conhecimento
 
 involucao(Termo, negativo) :-
     solucoes(Invariante, -(-Termo)::Invariante, Lista),
@@ -220,7 +220,7 @@ involucao(Termo, negativo) :-
 
 % Adjudicante
 
-% Retira conhecimento imperfeito incerto na base de conhecimento
+% CHECK Retira conhecimento imperfeito incerto na base de conhecimento
 % no caso do adjudicante com nome desconhecido
 
 involucao(adjudicante(IdAd,Nome_desconhecido,NIF,Morada), adjudicante, incerto, nome) :-
@@ -228,7 +228,7 @@ involucao(adjudicante(IdAd,Nome_desconhecido,NIF,Morada), adjudicante, incerto, 
     remocao((excecao(adjudicante(IdAdjudicante,N,Nif,M)) :-
                      adjudicante(IdAdjudicante,Nome_desconhecido,Nif,M))).
 
-% Retira conhecimento imperfeito incerto na base de conhecimento
+% CHECK Retira conhecimento imperfeito incerto na base de conhecimento
 % no caso do adjudicante com NIF desconhecido
 
 involucao(adjudicante(IdAd,Nome,NIF_desconhecido,Morada), adjudicante, incerto, nif) :-
@@ -236,7 +236,7 @@ involucao(adjudicante(IdAd,Nome,NIF_desconhecido,Morada), adjudicante, incerto, 
     remocao((excecao(adjudicante(IdAdjudicante,N,Nif,M)) :-
                      adjudicante(IdAdjudicante,N,NIF_desconhecido,M))).
 
-% Retira conhecimento imperfeito incerto na base de conhecimento
+% CHECK Retira conhecimento imperfeito incerto na base de conhecimento
 % no caso do adjudicante com morada desconhecida
 
 involucao(adjudicante(IdAd,Nome,NIF,Morada_desconhecida), adjudicante, incerto, morada) :-
@@ -246,7 +246,7 @@ involucao(adjudicante(IdAd,Nome,NIF,Morada_desconhecida), adjudicante, incerto, 
 
 % Adjudicatária
 
-% Retira conhecimento imperfeito incerto na base de conhecimento
+% CHECK Retira conhecimento imperfeito incerto na base de conhecimento
 % no caso da entidade adjudicatária com nome desconhecido
 
 involucao(adjudicataria(IdAda,Nome_desconhecido,NIF,Morada), adjudicataria, incerto, nome) :-
@@ -254,7 +254,7 @@ involucao(adjudicataria(IdAda,Nome_desconhecido,NIF,Morada), adjudicataria, ince
     remocao((excecao(adjudicataria(IdAdjudicataria,N,Nif,M)) :-
                      adjudicataria(IdAdjudicataria,Nome_desconhecido,Nif,M))).
 
-% Retira conhecimento imperfeito incerto na base de conhecimento
+% CHECK Retira conhecimento imperfeito incerto na base de conhecimento
 % no caso da entidade adjudicatária com NIF desconhecido
 
 involucao(adjudicataria(IdAda,Nome,NIF_desconhecido,Morada), adjudicataria, incerto, nif) :-
@@ -262,7 +262,7 @@ involucao(adjudicataria(IdAda,Nome,NIF_desconhecido,Morada), adjudicataria, ince
     remocao((excecao(adjudicataria(IdAdjudicataria,N,Nif,M)) :-
                      adjudicataria(IdAdjudicataria,N,NIF_desconhecido,M))).
 
-% Retira conhecimento imperfeito incerto na base de conhecimento
+% CHECK Retira conhecimento imperfeito incerto na base de conhecimento
 % no caso da entidade adjudicatária com morada desconhecida
 
 involucao(adjudicataria(IdAda,Nome,NIF,Morada_desconhecida), adjudicataria, incerto, morada) :-
@@ -272,7 +272,7 @@ involucao(adjudicataria(IdAda,Nome,NIF,Morada_desconhecida), adjudicataria, ince
 
 % Contrato
 
-% Retira conhecimento imperfeito incerto na base de conhecimento
+% CHECK Retira conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com id de adjudicante desconhecido
 
 involucao(contrato(IdAd_desconhecido,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Data), contrato, incerto, idad) :-
@@ -280,7 +280,7 @@ involucao(contrato(IdAd_desconhecido,IdAda,TipoDeContrato,TipoDeProcedimento,Des
     remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
                      contrato(IdAd_desconhecido,IdAdjudicataria,TC,TP,Desc,V,P,L,D))).
 
-% Retira conhecimento imperfeito incerto na base de conhecimento
+% CHECK Retira conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com id da entidade adjudicatária desconhecido
 
 involucao(contrato(IdAd,IdAda_desconhecido,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Data), contrato, incerto, idada) :-
@@ -288,7 +288,7 @@ involucao(contrato(IdAd,IdAda_desconhecido,TipoDeContrato,TipoDeProcedimento,Des
     remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
                      contrato(IdAdjudicante,IdAda_desconhecido,TC,TP,Desc,V,P,L,D))).
 
-% Retira conhecimento imperfeito incerto na base de conhecimento
+% CHECK Retira conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com tipo de contrato desconhecido
 
 involucao(contrato(IdAd,IdAda,TipoDeContrato_desconhecido,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Data), contrato, incerto, tipodecontrato) :-
@@ -296,7 +296,7 @@ involucao(contrato(IdAd,IdAda,TipoDeContrato_desconhecido,TipoDeProcedimento,Des
     remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
                      contrato(IdAdjudicante,IdAdjudicataria,TipoDeContrato_desconhecido,TP,Desc,V,P,L,D))).
 
-% Retira conhecimento imperfeito incerto na base de conhecimento
+% CHECK Retira conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com tipo de procedimento desconhecido
 
 involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento_desconhecido,Descricao,Valor,Prazo,Local,Data), contrato, incerto, tipodeprocedimento) :-
@@ -304,7 +304,7 @@ involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento_desconhecido,Des
     remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
                      contrato(IdAdjudicante,IdAdjudicataria,TC,TipoDeProcedimento_desconhecido,Desc,V,P,L,D))).
 
-% Retira conhecimento imperfeito incerto na base de conhecimento
+% CHECK Retira conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com descrição desconhecida
 
 involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao_desconhecida,Valor,Prazo,Local,Data), contrato, incerto, descricao) :-
@@ -312,7 +312,7 @@ involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao_descon
     remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
                      contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Descricao_desconhecida,V,P,L,D))).
 
-% Retira conhecimento imperfeito incerto na base de conhecimento
+% CHECK Retira conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com valor desconhecido
 
 involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor_desconhecido,Prazo,Local,Data), contrato, incerto, valor) :-
@@ -320,7 +320,7 @@ involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor_
     remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
                      contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,Valor_desconhecido,P,L,D))).
 
-% Retira conhecimento imperfeito incerto na base de conhecimento
+% CHECK Retira conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com prazo desconhecido
 
 involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo_desconhecido,Local,Data), contrato, incerto, prazo) :-
@@ -355,7 +355,7 @@ involucao(Termo, impreciso) :-
     remocao(excecao(Termo)),
     teste(Lista).
 
-% Retira conhecimento imperfeito impreciso na base de conhecimento
+% CHECK Retira conhecimento imperfeito impreciso na base de conhecimento
 % no caso de adjudicante com NIF contido dentro de um intervalo finito de valores
 
 involucao(adjudicante(IdAd,Nome,NIF_impreciso,Morada), adjudicante, impreciso, nif, LI, LS) :-
