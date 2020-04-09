@@ -72,3 +72,4 @@ valorAjuste(V) :- V =< 5000.
 % Tipo de Contrato válido (Aquisicao de servicos)
 
 contratoValido(C) :- C == 'Aquisicao de servicos'.
+
