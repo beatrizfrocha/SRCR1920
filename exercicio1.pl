@@ -17,7 +17,7 @@
 :- dynamic '-'/1.
 :- dynamic adjudicante/4.
 :- dynamic adjudicataria/4.
-:- dynamic contrato/11.
+:- dynamic contrato/12.
 
 :- dynamic excecao/1.
 :- dynamic nulointerdito/1.

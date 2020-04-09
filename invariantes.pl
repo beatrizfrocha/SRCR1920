@@ -134,60 +134,80 @@
  %- - - - - - - - - - - - - - - - - - - - - - - - - - -  -  -  -  -   -
  % Invariantes Estruturais e Referenciais: Contrato
 
+ % CHECK Invariante que garante que o id de cada contrato é único
+ % para conhecimento perfeito positivo
+
+  +contrato(IdC,IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano) :: (solucoes(IdC, contrato(IdC,_,_,_,_,_,_,_,_,_,_,_), R),comprimento(R, N),N==1).
+
+ % CHECK Invariante que garante que o id de cada contrato é único
+ % para conhecimento perfeito negativo
+  
+  +(-contrato(IdC,IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano)) :: (solucoes(IdC, -contrato(IdC,_,_,_,_,_,_,_,_,_,_,_), R),comprimento(R, N),N==1).
+ 
+ % CHECK Garantir que contratos com ids diferentes têm diferente informação
+ % para conhecimento perfeito positivo
+  
+  +contrato(IdC,IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano) :: (solucoes((IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano), contrato(_,IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano), R),comprimento(R, 1)).
+
+ % CHECK Garantir que contratos com ids diferentes têm diferente informação
+ % para conhecimento perfeito negativo
+
+  +(-contrato(IdC,IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano)) :: (solucoes((IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano), -contrato(_,IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano), R),comprimento(R, 1)).
+
  % CHECK Garantir que o id do adjudicante associado ao contrato existe
 
-  +contrato(IdAd,_,_,_,_,_,_,_,_,_,_) :: (solucoes(IdAd, adjudicante(IdAd,_,_,_), R),comprimento(R, 1)).
+  +contrato(_,IdAd,_,_,_,_,_,_,_,_,_,_) :: (solucoes(IdAd, adjudicante(IdAd,_,_,_), R),comprimento(R, 1)).
 
  % CHECK Garantir que o id da entidade adjudicatária associada ao contrato existe
 
-  +contrato(_,IdAda,_,_,_,_,_,_,_,_,_) :: (solucoes(IdAda, adjudicataria(IdAda,_,_,_), R),comprimento(R, 1)).
+  +contrato(_,_,IdAda,_,_,_,_,_,_,_,_,_) :: (solucoes(IdAda, adjudicataria(IdAda,_,_,_), R),comprimento(R, 1)).
 
  % CHECK Garantir que o valor de cada contrato é válido (>= 0)
  % para conhecimento perfeito positivo
 
-  +contrato(_,_,_,_,_,Valor,_,_,_,_,_) :: valorValido(Valor).
+  +contrato(_,_,_,_,_,_,Valor,_,_,_,_,_) :: valorValido(Valor).
 
  % CHECK Garantir que o valor de cada contrato é válido (>= 0)
  % para conhecimento perfeito negativo
 
- +(-contrato(_,_,_,_,_,Valor,_,_,_,_,_)) :: valorValido(Valor).
+ +(-contrato(_,_,_,_,_,_,Valor,_,_,_,_,_)) :: valorValido(Valor).
 
  % CHECK Garantir que o Tipo de Procedimento é válido (Ajuste direto, Consulta previa ou Concurso publico)
  % para conhecimento perfeito positivo
 
- +contrato(_,_,_,Procedimento,_,_,_,_,_,_,_) :: procedimentoValido(Procedimento).
+ +contrato(_,_,_,_,Procedimento,_,_,_,_,_,_,_) :: procedimentoValido(Procedimento).
 
  % CHECK Garantir que o Tipo de Procedimento é válido (Ajuste direto, Consulta previa ou Concurso publico)
  % para conhecimento perfeito negativo
 
- +(-contrato(_,_,_,Procedimento,_,_,_,_,_,_,_)) :: procedimentoValido(Procedimento).
+ +(-contrato(_,_,_,_,Procedimento,_,_,_,_,_,_,_)) :: procedimentoValido(Procedimento).
 
  % CHECK Garantir que os contratos por Ajuste direto têm um valor igual ou inferior a 5000 euros
  % para conhecimento perfeito positivo
 
- +contrato(_,_,_,'Ajuste direto',_,Valor,_,_,_,_,_) :: valorAjuste(Valor).
+ +contrato(_,_,_,_,'Ajuste direto',_,Valor,_,_,_,_,_) :: valorAjuste(Valor).
 
  % CHECK Garantir que os contratos por Ajuste direto têm um valor igual ou inferior a 5000 euros
  % para conhecimento perfeito negativo
 
- +(-contrato(_,_,_,'Ajuste direto',_,Valor,_,_,_,_,_)) :: valorAjuste(Valor).
+ +(-contrato(_,_,_,_,'Ajuste direto',_,Valor,_,_,_,_,_)) :: valorAjuste(Valor).
 
  % CHECK Garantir que o Tipo de Contrato é válido (Aquisicao de servicos)
  % para conhecimento perfeito positivo
 
-  +contrato(_,_,Contrato,_,_,_,_,_,_,_,_) :: contratoValido(Contrato).
+  +contrato(_,_,_,Contrato,_,_,_,_,_,_,_,_) :: contratoValido(Contrato).
 
  % CHECK Garantir que o Tipo de Contrato é válido (Aquisicao de servicos)
  % para conhecimento perfeito negativo
 
- +(-contrato(_,_,Contrato,_,_,_,_,_,_,_,_)) :: contratoValido(Contrato).
+ +(-contrato(_,_,_,Contrato,_,_,_,_,_,_,_,_)) :: contratoValido(Contrato).
 
  % CHECK Garantir que os contratos por Ajuste direto têm um prazo de vigência até 1 ano inclusive
  % para conhecimento perfeito positivo
 
- +contrato(_,_,_,'Ajuste direto',_,_,_,_,_,_,Ano) :: dataValida(Ano).
+ +contrato(_,_,_,_,'Ajuste direto',_,_,_,_,_,_,Ano) :: dataValida(Ano).
 
  % CHECK Garantir que os contratos por Ajuste direto têm um prazo de vigência até 1 ano inclusive
  % para conhecimento perfeito negativo
 
- +(-contrato(_,_,_,'Ajuste direto',_,_,_,_,_,_,Ano)) :: dataValida(Ano).
+ +(-contrato(_,_,_,_,'Ajuste direto',_,_,_,_,_,_,Ano)) :: dataValida(Ano).
