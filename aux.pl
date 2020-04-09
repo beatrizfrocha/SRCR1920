@@ -73,3 +73,6 @@ valorAjuste(V) :- V =< 5000.
 
 contratoValido(C) :- C == 'Aquisicao de servicos'.
 
+% Data válida (=< 1 ano)
+
+dataValida(A) :- 2020-A =< 1.

@@ -85,74 +85,90 @@ evolucao(adjudicataria(IdAda,Nome,NIF,Morada_desconhecida), adjudicataria, incer
 % CHECK Insere conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com id de adjudicante desconhecido
 
-evolucao(contrato(IdAd_desconhecido,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Data), contrato, incerto, idad) :-
-    evolucao(contrato(IdAd_desconhecido,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Data), positivo),
-    insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
-                    contrato(IdAd_desconhecido,IdAdjudicataria,TC,TP,Desc,V,P,L,D))).
+evolucao(contrato(IdAd_desconhecido,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano), contrato, incerto, idad) :-
+    evolucao(contrato(IdAd_desconhecido,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano), positivo),
+    insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                    contrato(IdAd_desconhecido,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A))).
 
 % CHECK Insere conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com id da entidade adjudicatária desconhecido
 
-evolucao(contrato(IdAd,IdAda_desconhecido,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Data), contrato, incerto, idada) :-
-    evolucao(contrato(IdAd,IdAda_desconhecido,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Data), positivo),
-    insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
-                    contrato(IdAdjudicante,IdAda_desconhecido,TC,TP,Desc,V,P,L,D))).
+evolucao(contrato(IdAd,IdAda_desconhecido,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano), contrato, incerto, idada) :-
+    evolucao(contrato(IdAd,IdAda_desconhecido,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano), positivo),
+    insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                    contrato(IdAdjudicante,IdAda_desconhecido,TC,TP,Desc,V,P,L,D,M,A))).
 
 % CHECK Insere conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com tipo de contrato desconhecido
 
-evolucao(contrato(IdAd,IdAda,TipoDeContrato_desconhecido,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Data), contrato, incerto, tipodecontrato) :-
-    evolucao(contrato(IdAd,IdAda,TipoDeContrato_desconhecido,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Data), positivo),
-    insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
-                    contrato(IdAdjudicante,IdAdjudicataria,TipoDeContrato_desconhecido,TP,Desc,V,P,L,D))).
+evolucao(contrato(IdAd,IdAda,TipoDeContrato_desconhecido,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano), contrato, incerto, tipodecontrato) :-
+    evolucao(contrato(IdAd,IdAda,TipoDeContrato_desconhecido,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano), positivo),
+    insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                    contrato(IdAdjudicante,IdAdjudicataria,TipoDeContrato_desconhecido,TP,Desc,V,P,L,D,M,A))).
 
 % CHECK Insere conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com tipo de procedimento desconhecido
 
-evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento_desconhecido,Descricao,Valor,Prazo,Local,Data), contrato, incerto, tipodeprocedimento) :-
-    evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento_desconhecido,Descricao,Valor,Prazo,Local,Data), positivo),
-    insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
-                    contrato(IdAdjudicante,IdAdjudicataria,TC,TipoDeProcedimento_desconhecido,Desc,V,P,L,D))).
+evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento_desconhecido,Descricao,Valor,Prazo,Local,Dia,Mes,Ano), contrato, incerto, tipodeprocedimento) :-
+    evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento_desconhecido,Descricao,Valor,Prazo,Local,Dia,Mes,Ano), positivo),
+    insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                    contrato(IdAdjudicante,IdAdjudicataria,TC,TipoDeProcedimento_desconhecido,Desc,V,P,L,D,M,A))).
 
 % CHECK Insere conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com descrição desconhecida
 
-evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao_desconhecida,Valor,Prazo,Local,Data), contrato, incerto, descricao) :-
-    evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao_desconhecida,Valor,Prazo,Local,Data), positivo),
-    insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
-                    contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Descricao_desconhecida,V,P,L,D))).
+evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao_desconhecida,Valor,Prazo,Local,Dia,Mes,Ano), contrato, incerto, descricao) :-
+    evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao_desconhecida,Valor,Prazo,Local,Dia,Mes,Ano), positivo),
+    insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                    contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Descricao_desconhecida,V,P,L,D,M,A))).
 
 % CHECK Insere conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com valor desconhecido
 
-evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor_desconhecido,Prazo,Local,Data), contrato, incerto, valor) :-
-    evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor_desconhecido,Prazo,Local,Data), positivo),
-    insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
-                    contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,Valor_desconhecido,P,L,D))).
+evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor_desconhecido,Prazo,Local,Dia,Mes,Ano), contrato, incerto, valor) :-
+    evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor_desconhecido,Prazo,Local,Dia,Mes,Ano), positivo),
+    insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                    contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,Valor_desconhecido,P,L,D,M,A))).
 
 % CHECK Insere conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com prazo desconhecido
 
-evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo_desconhecido,Local,Data), contrato, incerto, prazo) :-
-    evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo_desconhecido,Local,Data), positivo),
-    insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
-                    contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,Prazo_desconhecido,L,D))).
+evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo_desconhecido,Local,Dia,Mes,Ano), contrato, incerto, prazo) :-
+    evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo_desconhecido,Local,Dia,Mes,Ano), positivo),
+    insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                    contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,Prazo_desconhecido,L,D,M,A))).
 
 % CHECK Insere conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com local desconhecido
 
-evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local_desconhecido,Data), contrato, incerto, local) :-
-    evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local_desconhecido,Data), positivo),
-    insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
-                    contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,Local_desconhecido,D))).
+evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local_desconhecido,Dia,Mes,Ano), contrato, incerto, local) :-
+    evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local_desconhecido,Dia,Mes,Ano), positivo),
+    insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                    contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,Local_desconhecido,D,M,A))).
 
 % CHECK Insere conhecimento imperfeito incerto na base de conhecimento
-% no caso do contrato com data desconhecida
+% no caso do contrato com dia desconhecido
 
-evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Data_desconhecida), contrato, incerto, data) :-
-    evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Data_desconhecida), positivo),
-    insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
-                    contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,Data_desconhecida))).
+evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia_desconhecido,Mes,Ano), contrato, incerto, dia) :-
+    evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia_desconhecido,Mes,Ano), positivo),
+    insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                    contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,Dia_desconhecido,M,A))).
+
+% CHECK Insere conhecimento imperfeito incerto na base de conhecimento
+% no caso do contrato com mes desconhecido
+
+evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes_desconhecido,Ano), contrato, incerto, mes) :-
+    evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes_desconhecido,Ano), positivo),
+    insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                    contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,Mes_desconhecido,A))).
+
+% CHECK Insere conhecimento imperfeito incerto na base de conhecimento
+% no caso do contrato com ano desconhecido
+
+evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano_desconhecido), contrato, incerto, ano) :-
+    evolucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano_desconhecido), positivo),
+    insercao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                    contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,Ano_desconhecido))).
 
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % Evolução de conhecimento imperfeito impreciso
@@ -275,74 +291,90 @@ involucao(adjudicataria(IdAda,Nome,NIF,Morada_desconhecida), adjudicataria, ince
 % CHECK Retira conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com id de adjudicante desconhecido
 
-involucao(contrato(IdAd_desconhecido,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Data), contrato, incerto, idad) :-
-    involucao(contrato(IdAd_desconhecido,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Data), positivo),
-    remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
-                     contrato(IdAd_desconhecido,IdAdjudicataria,TC,TP,Desc,V,P,L,D))).
+involucao(contrato(IdAd_desconhecido,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano), contrato, incerto, idad) :-
+    involucao(contrato(IdAd_desconhecido,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano), positivo),
+    remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                     contrato(IdAd_desconhecido,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A))).
 
 % CHECK Retira conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com id da entidade adjudicatária desconhecido
 
-involucao(contrato(IdAd,IdAda_desconhecido,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Data), contrato, incerto, idada) :-
-    involucao(contrato(IdAd,IdAda_desconhecido,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Data), positivo),
-    remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
-                     contrato(IdAdjudicante,IdAda_desconhecido,TC,TP,Desc,V,P,L,D))).
+involucao(contrato(IdAd,IdAda_desconhecido,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano), contrato, incerto, idada) :-
+    involucao(contrato(IdAd,IdAda_desconhecido,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano), positivo),
+    remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                     contrato(IdAdjudicante,IdAda_desconhecido,TC,TP,Desc,V,P,L,D,M,A))).
 
 % CHECK Retira conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com tipo de contrato desconhecido
 
-involucao(contrato(IdAd,IdAda,TipoDeContrato_desconhecido,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Data), contrato, incerto, tipodecontrato) :-
-    involucao(contrato(IdAd,IdAda,TipoDeContrato_desconhecido,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Data), positivo),
-    remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
-                     contrato(IdAdjudicante,IdAdjudicataria,TipoDeContrato_desconhecido,TP,Desc,V,P,L,D))).
+involucao(contrato(IdAd,IdAda,TipoDeContrato_desconhecido,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano), contrato, incerto, tipodecontrato) :-
+    involucao(contrato(IdAd,IdAda,TipoDeContrato_desconhecido,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano), positivo),
+    remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                     contrato(IdAdjudicante,IdAdjudicataria,TipoDeContrato_desconhecido,TP,Desc,V,P,L,D,M,A))).
 
 % CHECK Retira conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com tipo de procedimento desconhecido
 
-involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento_desconhecido,Descricao,Valor,Prazo,Local,Data), contrato, incerto, tipodeprocedimento) :-
-    involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento_desconhecido,Descricao,Valor,Prazo,Local,Data), positivo),
-    remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
-                     contrato(IdAdjudicante,IdAdjudicataria,TC,TipoDeProcedimento_desconhecido,Desc,V,P,L,D))).
+involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento_desconhecido,Descricao,Valor,Prazo,Local,Dia,Mes,Ano), contrato, incerto, tipodeprocedimento) :-
+    involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento_desconhecido,Descricao,Valor,Prazo,Local,Dia,Mes,Ano), positivo),
+    remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                     contrato(IdAdjudicante,IdAdjudicataria,TC,TipoDeProcedimento_desconhecido,Desc,V,P,L,D,M,A))).
 
 % CHECK Retira conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com descrição desconhecida
 
-involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao_desconhecida,Valor,Prazo,Local,Data), contrato, incerto, descricao) :-
-    involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao_desconhecida,Valor,Prazo,Local,Data), positivo),
-    remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
-                     contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Descricao_desconhecida,V,P,L,D))).
+involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao_desconhecida,Valor,Prazo,Local,Dia,Mes,Ano), contrato, incerto, descricao) :-
+    involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao_desconhecida,Valor,Prazo,Local,Dia,Mes,Ano), positivo),
+    remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                     contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Descricao_desconhecida,V,P,L,D,M,A))).
 
 % CHECK Retira conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com valor desconhecido
 
-involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor_desconhecido,Prazo,Local,Data), contrato, incerto, valor) :-
-    involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor_desconhecido,Prazo,Local,Data), positivo),
-    remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
-                     contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,Valor_desconhecido,P,L,D))).
+involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor_desconhecido,Prazo,Local,Dia,Mes,Ano), contrato, incerto, valor) :-
+    involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor_desconhecido,Prazo,Local,Dia,Mes,Ano), positivo),
+    remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                     contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,Valor_desconhecido,P,L,D,M,A))).
 
 % CHECK Retira conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com prazo desconhecido
 
-involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo_desconhecido,Local,Data), contrato, incerto, prazo) :-
-    involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo_desconhecido,Local,Data), positivo),
-    remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
-                     contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,Prazo_desconhecido,L,D))).
+involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo_desconhecido,Local,Dia,Mes,Ano), contrato, incerto, prazo) :-
+    involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo_desconhecido,Local,Dia,Mes,Ano), positivo),
+    remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                     contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,Prazo_desconhecido,L,D,M,A))).
 
 % CHECK Retira conhecimento imperfeito incerto na base de conhecimento
 % no caso do contrato com local desconhecido
 
-involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local_desconhecido,Data), contrato, incerto, local) :-
-    involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local_desconhecido,Data), positivo),
-    remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
-                     contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,Local_desconhecido,D))).
+involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local_desconhecido,Dia,Mes,Ano), contrato, incerto, local) :-
+    involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local_desconhecido,Dia,Mes,Ano), positivo),
+    remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                     contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,Local_desconhecido,D,M,A))).
 
 % CHECK Retira conhecimento imperfeito incerto na base de conhecimento
-% no caso do contrato com data desconhecida
+% no caso do contrato com dia desconhecido
 
-involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Data_desconhecida), contrato, incerto, data) :-
-    involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Data_desconhecida), positivo),
-    remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D)) :-
-                     contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,Data_desconhecida))).
+involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia_desconhecido,Mes,Ano), contrato, incerto, dia) :-
+    involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia_desconhecido,Mes,Ano), positivo),
+    remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                     contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,Dia_desconhecido,M,A))).
+
+% CHECK Retira conhecimento imperfeito incerto na base de conhecimento
+% no caso do contrato com mes desconhecido
+
+involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes_desconhecido,Ano), contrato, incerto, mes) :-
+    involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes_desconhecido,Ano), positivo),
+    remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                     contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,Mes_desconhecido,A))).
+
+% CHECK Retira conhecimento imperfeito incerto na base de conhecimento
+% no caso do contrato com ano desconhecido
+
+involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano_desconhecido), contrato, incerto, ano) :-
+    involucao(contrato(IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Valor,Prazo,Local,Dia,Mes,Ano_desconhecido), positivo),
+    remocao((excecao(contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,A)) :-
+                     contrato(IdAdjudicante,IdAdjudicataria,TC,TP,Desc,V,P,L,D,M,Ano_desconhecido))).
 
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % Involução de conhecimento imperfeito impreciso
