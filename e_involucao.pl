@@ -407,8 +407,8 @@ involucao(adjudicataria(IdAda,Nome,NIF_impreciso,Morada), adjudicataria, impreci
 % Retira conhecimento imperfeito interdito na base de conhecimento
 % no caso de adjudicante com nome interdito
 
-involucao(adjudicante(IdAd,Nome_impossivel,NIF,Morada), adjudicante, interdito, nome) :-
+ involucao(adjudicante(IdAd,Nome_impossivel,NIF,Morada), adjudicante, interdito, nome) :-
     involucao(adjudicante(IdAd,Nome_impossivel,NIF,Morada), positivo),
-    remocao((excecao(adjudicante(IdAdjudicante,N,Nif,M)) :-
-                adjudicante(IdAdjudicante,Nome_impossivel,Nif,M))),
+    remocao((excecao(utente(IdAdjudicante,N,Nif,M)) :-
+                adjudicante(IdAdjudicante,Nome_impossivel,N,Nif,M))),
     remocao((nulointerdito(Nome_impossivel))).

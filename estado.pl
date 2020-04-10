@@ -42,6 +42,12 @@ excecao(adjudicante(14,'Casio Espa A Sl - Sucursal Em Portugal',NIF,'Portugal,Li
 % Conhecimento Imperfeito Interdito
 % É impossível saber o nif da entidade adjudicante:
 
+adjudicante(15,nome_impossivel,123456789,'Portugal,Lisboa,Lisboa').
+excecao(adjudicante(IdAd,Nome,NIF,Morada)) :- adjudicante((IdAd,nome_impossivel,NIF,Morada)).
+nulointerdito(nome_impossivel).
++adjudicante(IdAd,Nome,NIF,Morada) :: (solucoes((IdAd,Nome,NIF,Morada), (adjudicante(15,nome_impossivel,123456789,'Portugal,Lisboa,Lisboa'), nao(nulointerdito(nome_impossivel))), R),comprimento(R,0)).
+
+
 adjudicante(15,'Fidelidade - Companhia de Seguros, S.A',nif_impossivel,'Portugal,Lisboa,Lisboa').
 excecao(adjudicante(IdAd,Nome,NIF,Morada)) :- adjudicante((IdAd,Nome,nif_impossivel,Morada)).
 nulointerdito(nif_impossivel).
@@ -96,7 +102,7 @@ contrato(4,8,7,'Aquisicao de servicos','Ajuste direto','Decoracao da area de res
 contrato(5,2,2,'Aquisicao de servicos','Consulta previa','Montagem de equipamento',265,365,'Braga',30,01,2020).
 contrato(6,7,3,'Aquisicao de servicos','Concurso publico','Manutencao de pneus',489,730,'Marco de Canaveses',23,02,2020).
 contrato(7,5,7,'Aquisicao de servicos','Ajuste direto','Decoracao da area de restauracao',988,95,'Lisboa',18,03,2020).
-contrato(8,3,5,'Aquisicao de servicos','Consulta previa','Servico de catering','Porto',5000,395,08,04,2020).
+contrato(8,3,5,'Aquisicao de servicos','Consulta previa','Servico de catering',5000,395,'Porto',08,04,2020).
 contrato(9,6,2,'Aquisicao de servicos','Concurso publico','Montagem de equipamento','Lisboa',4600,600,11,01,2020).
 
 % Conhecimento Perfeito Negativo
@@ -104,6 +110,8 @@ contrato(9,6,2,'Aquisicao de servicos','Concurso publico','Montagem de equipamen
 -contrato(10,4,8,'Aquisicao de servicos','Ajuste direto','Manutencao de impressoras',543,120,'Oeiras',03,03,2020).
 -contrato(11,6,6,'Aquisicao de servicos','Consulta previa','Prestacao de Servicos audiovisuais',4090,7,'Lisboa',13,02,2020).
 -contrato(12,10,9,'Aquisicao de servicos','Concurso publico','Manutencao de eletrodomesticos',4000,90,'Cascais',14,02,2020).
+
+-contrato(100,4,8,'Aquisicao de servicos','Consulta previa','Manutencao de impressoras',80000,120,'Oeiras',03,03,2020).
 
 % Conhecimento Imperfeito Incerto
 % Não se sabe a descrição do contrato:
