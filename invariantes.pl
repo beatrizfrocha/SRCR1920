@@ -219,7 +219,7 @@
 
  +contrato(_,IdAd,IdAda,_,_,_,Valor,_,_,_,_,Ano) :: regraValida(IdAd,IdAda,Ano,Valor).
 
-% Garantir que uma entidade adjudicante não pode convidar a mesma empresa para celebrar um contrato
+% CHECK Garantir que uma entidade adjudicante não pode convidar a mesma empresa para celebrar um contrato
 % no ano económico em curso e nos dois anos económicos anteriores, sempre que o preço contratual acumulado 
 % dos contratos já celebrados seja igual ou superior a 75.000 euros 
 % para conhecimento perfeito negativo

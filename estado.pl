@@ -111,8 +111,6 @@ contrato(9,6,2,'Aquisicao de servicos','Concurso publico','Montagem de equipamen
 -contrato(11,6,6,'Aquisicao de servicos','Consulta previa','Prestacao de Servicos audiovisuais',4090,7,'Lisboa',13,02,2020).
 -contrato(12,10,9,'Aquisicao de servicos','Concurso publico','Manutencao de eletrodomesticos',4000,90,'Cascais',14,02,2020).
 
--contrato(100,4,8,'Aquisicao de servicos','Consulta previa','Manutencao de impressoras',80000,120,'Oeiras',03,03,2020).
-
 % Conhecimento Imperfeito Incerto
 % Não se sabe a descrição do contrato:
 

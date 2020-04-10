@@ -77,7 +77,7 @@ contratoValido(C) :- C == 'Aquisicao de servicos'.
 
 dataValida(A) :- 2020-A =< 1.
 
-% Regra dos 3 anos válida
+% CHECK Regra dos 3 anos válida
 
 regraValida(IdAd,IdAda,Ano,Valor) :- listaContratos(IdAd,IdAda,R),!,
                                filtraContratos(R,Ano,S),!,
@@ -97,10 +97,11 @@ somaContratos([(Valor,Ano)|T],R) :- somaContratos(T,R1), R is Valor + R1.
 
 somaValida(S,Valor) :- S < 75000+Valor.
 
+% CHECK Regra dos 3 anos válida para conhecimento perfeito negativo
 
+regraValidaNegativo(IdAd,IdAda,Ano,Valor) :- listaContratosNegativo(IdAd,IdAda,R),!,
+                                             filtraContratos(R,Ano,S),!,
+                                             somaContratos(S,N),!,
+                                             somaValida(N,Valor).
 
-
-
-
-
-%%%%%%%%%%%%
+listaContratosNegativo(IdAd,IdAda,R) :- solucoes((Valor,Ano),-contrato(_,IdAd,IdAda,_,_,_,Valor,_,_,_,_,Ano),R).
