@@ -13,7 +13,7 @@
  % Invariante que garante que não existe conhecimento
  % perfeito negativo repetido
 
-+(-T) :: (solucoes(T, -T, R),
+ +(-T) :: (solucoes(T, -T, R),
           comprimento(R, 1)).
 
  % Invariante que não permite adicionar conhecimento
