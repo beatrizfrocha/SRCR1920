@@ -4,29 +4,29 @@
  %- - - - - - - - - - - - - - - - - - - - - - - - - - -  -  -  -  -   -
  % Invariantes Universais
 
- % Invariante que garante que não existe conhecimento
+ % CHECK Invariante que garante que não existe conhecimento
  % perfeito positivo repetido
 
   +T :: (solucoes(T, T, R),
          comprimento(R, 1)).
 
- % Invariante que garante que não existe conhecimento
+ % CHECK Invariante que garante que não existe conhecimento
  % perfeito negativo repetido
 
  +(-T) :: (solucoes(T, -T, R),
           comprimento(R, 1)).
 
- % Invariante que não permite adicionar conhecimento
+ % CHECK Invariante que não permite adicionar conhecimento
  % perfeito positivo que contradiz conhecimento perfeito negativo
 
   +T :: nao(-T).
 
- % Invariante que não permite adicionar conhecimento
+ % CHECK Invariante que não permite adicionar conhecimento
  % perfeito negativo que contradiz conhecimento perfeito positivo
 
   +(-T) :: nao(T).
 
- % Invariante que garante que não existem excecoes repetidas
+ % CHECK Invariante que garante que não existem excecoes repetidas
 
   +(excecao(T)) :: (solucoes(T, excecao(T), R),
                    comprimento(R, 1)).
@@ -75,14 +75,14 @@
 
  +(-adjudicante(_,_,NIF,_)) :: nifPositivo(NIF).
 
- % Invariante que impede a inserção de conhecimento perfeito positivo relativo
+ % CHECK Invariante que impede a inserção de conhecimento perfeito positivo relativo
  % a um adjudicante com nome interdito (conhecimento imperfeito interdito)
 
  +adjudicante(IdAd,Nome,NIF,Morada) :: (solucoes((IdAd,Nomeint,NIF,Morada), (adjudicante(IdAd,Nomeint,NIF,Morada), nulointerdito(Nomeint)), R),comprimento(R,0)).
 
- % Garantir que não é possível remover um adjudicante com contratos
+ % CHECK Garantir que não é possível remover um adjudicante com contratos
 
- -adjudicante(IdAd,_,_,_) :: (solucoes(IdAd, contrato(IdAd,_,_,_,_,_,_,_,_), R),comprimento(R, 0)).
+ -adjudicante(IdAd,_,_,_) :: (solucoes(IdAd, contrato(_,IdAd,_,_,_,_,_,_,_,_,_,_), R),comprimento(R, 0)).
 
  %- - - - - - - - - - - - - - - - - - - - - - - - - - -  -  -  -  -   -
  % Invariantes Estruturais e Referenciais: Adjudicatária
@@ -127,9 +127,9 @@
 
  +(-adjudicataria(_,_,NIF,_)) :: nifPositivo(NIF).
 
- % Garantir que não é possível remover uma entidade adjudicatária com contratos
+ % CHECK Garantir que não é possível remover uma entidade adjudicatária com contratos
 
- -adjudicataria(IdAda,_,_,_) :: (solucoes(IdAda, contrato(_,IdAda,_,_,_,_,_,_,_), R),comprimento(R, 0)).
+ -adjudicataria(IdAda,_,_,_) :: (solucoes(IdAda, contrato(_,_,IdAda,_,_,_,_,_,_,_,_,_), R),comprimento(R, 0)).
 
  %- - - - - - - - - - - - - - - - - - - - - - - - - - -  -  -  -  -   -
  % Invariantes Estruturais e Referenciais: Contrato

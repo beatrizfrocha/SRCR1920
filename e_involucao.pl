@@ -379,7 +379,7 @@ involucao(contrato(IdC,IdAd,IdAda,TipoDeContrato,TipoDeProcedimento,Descricao,Va
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % Involução de conhecimento imperfeito impreciso
 
-% Retira conhecimento imperfeito impreciso na base de conhecimento
+% CHECK Retira conhecimento imperfeito impreciso na base de conhecimento
 % seja de adjudicante, adjudicatária ou contrato
 
 involucao(Termo, impreciso) :-
@@ -404,11 +404,11 @@ involucao(adjudicataria(IdAda,Nome,NIF_impreciso,Morada), adjudicataria, impreci
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
 % Involução de conhecimento imperfeito interdito
 
-% Retira conhecimento imperfeito interdito na base de conhecimento
+% CHECK Retira conhecimento imperfeito interdito na base de conhecimento
 % no caso de adjudicante com nome interdito
 
  involucao(adjudicante(IdAd,Nome_impossivel,NIF,Morada), adjudicante, interdito, nome) :-
     involucao(adjudicante(IdAd,Nome_impossivel,NIF,Morada), positivo),
-    remocao((excecao(utente(IdAdjudicante,N,Nif,M)) :-
-                adjudicante(IdAdjudicante,Nome_impossivel,N,Nif,M))),
+    remocao((excecao(adjudicante(IdAdjudicante,N,Nif,M)) :-
+                adjudicante(IdAdjudicante,Nome_impossivel,Nif,M))),
     remocao((nulointerdito(Nome_impossivel))).

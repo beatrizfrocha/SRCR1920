@@ -46,7 +46,7 @@
 % Sistema de Inferência
 
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
-% Extensao do meta-predicado demo: Questao,Resposta -> {V,F}
+% CHECK Extensao do meta-predicado demo: Questao,Resposta -> {V,F}
 %                            Resposta = { verdadeiro,falso,desconhecido }
 
 demo( Questao,verdadeiro ) :-
@@ -58,7 +58,7 @@ demo( Questao,desconhecido ) :-
     nao( -Questao ).
 
 %- - - - - - - - - - - - - - - - - - - - - - - - - - -  -  -  -  -   -
-% Extensao do meta-predicado demoLista: [Questao],[Resposta] -> {V,F,D}
+% CHECK Extensao do meta-predicado demoLista: [Questao],[Resposta] -> {V,F,D}
 % capaz de responder a várias questões em simultâneo
 
 demoLista([],[]).
@@ -66,7 +66,7 @@ demoLista([Questao|Questoes],[Resposta|Respostas]) :- demo(Questao,Resposta),
                           demoLista(Questoes,Respostas).
 
 %- - - - - - - - - - - - - - - - - - - - - - - - - - -  -  -  -  -   -
-% Extensao do predicado conjuncaoLista: [Questao],Resposta -> {V,F,D}
+% CHECK Extensao do predicado conjuncaoLista: [Questao],Resposta -> {V,F,D}
 % capaz de fazer a conjunção de uma lista de questões
 % produzindo um resultado final
 
@@ -76,7 +76,7 @@ conjuncaoLista([Questao|Questoes], Resposta) :- demo(Questao, Resposta1),
     conjuncaoLista(Questoes,Resposta2), 
     conjuncao(Resposta1,Resposta2,Resposta).
 
-% Extensao do predicado disjuncaoLista: [Questao],Resposta -> {V,F,D}
+% CHECK Extensao do predicado disjuncaoLista: [Questao],Resposta -> {V,F,D}
 % capaz de fazer a disjunção de uma lista de questões
 % produzindo um resultado final
 
@@ -87,7 +87,7 @@ disjuncaoLista([Questao|Questoes], Resposta) :- demo(Questao, Resposta1),
     disjuncao(Resposta1,Resposta2,Resposta).
 
 %- - - - - - - - - - - - - - - - - - - - - - - - - - -  -  -  -  -   -
-% Extensao do predicado conjuncao_disjuncao: (Operador, Questao1, Questao2),Resposta -> {V,F,D}
+% CHECK Extensao do predicado conjuncao_disjuncao: (Operador, Questao1, Questao2),Resposta -> {V,F,D}
 % capaz de fazer a conjunção ou a disjunção de duas questões
 % produzindo um resultado final
 
@@ -96,7 +96,7 @@ conjuncao_disjuncao(('AND',Questao1,Questao2),Resposta) :- conjuncao_disjuncao(Q
 conjuncao_disjuncao(Questao,Resposta) :- demo(Questao,Resposta).
 
 %- - - - - - - - - - - - - - - - - - - - - - - - - - -  -  -  -  -   -
-% Extensao do meta-predicado conjuncao_disjuncaoLista: [Questao], Resposta -> {V,F,D}
+% CHECK Extensao do meta-predicado conjuncao_disjuncaoLista: [Questao], Resposta -> {V,F,D}
 % capaz de fazer a conjunção e/ou disjunção de uma lista de questões
 % produzindo um resultado final
 
@@ -110,7 +110,7 @@ conjuncao_disjuncaoLista([Questao1,'OR'|Questoes],Resposta) :- demo(Questao1,Res
                            disjuncao(Resposta1,Resposta2,Resposta).
 
 %- - - - - - - - - - - - - - - - - - - - - - - - - - -  -  -  -  -   -
-% Extensao do predicado conjuncao: X,Y -> {V,F,D}
+% CHECK Extensao do predicado conjuncao: X,Y -> {V,F,D}
 
 conjuncao(verdadeiro,verdadeiro,verdadeiro).
 conjuncao(verdadeiro,desconhecido,desconhecido).
@@ -119,7 +119,7 @@ conjuncao(desconhecido,desconhecido,desconhecido).
 conjuncao(falso,_,falso).
 conjuncao(_,falso,falso).
 
-% Extensao do predicado disjuncao: X,Y -> {V,F,D}
+% CHECK Extensao do predicado disjuncao: X,Y -> {V,F,D}
 
 disjuncao(verdadeiro,_,verdadeiro).
 disjuncao(_,verdadeiro,verdadeiro).

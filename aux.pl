@@ -16,7 +16,7 @@ solucoes( X,Y,Z ) :-
     findall( X,Y,Z ).
 
 %--------------------------------- - - - - - - - - - -  -  -  -  -   -
-% Extensao do meta-predicado nao: Questao -> {V,F}
+% CHECK Extensao do meta-predicado nao: Questao -> {V,F}
 
 nao( Questao ) :-
     Questao, !, fail.
